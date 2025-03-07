@@ -21,13 +21,6 @@ const uint64_t DIGITS[] = {
     100000000000000000,
 };
 
-/**
- * Definition for singly-linked list.
- * struct ListNode {
- *     int val;
- *     struct ListNode *next;
- * };
- */
 struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
     struct ListNode* result = NULL; 
     struct ListNode* last = NULL;
@@ -87,6 +80,48 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
                 last = newNode;
             }
         }
+    }
+
+    return result;
+}
+
+struct ListNode* addTwoNumbersSimple(struct ListNode* l1, struct ListNode* l2) {
+    struct ListNode* result = NULL; 
+    struct ListNode* last = NULL;
+    int number = 0;
+
+    while (l1 != NULL || l2 != NULL || number)
+    {
+        if (l1 != NULL)
+        {
+            number += l1->val;
+            l1 = l1->next;
+        }
+
+        if (l2 != NULL)
+        {
+            number += l2->val;
+            l2 = l2->next;
+        }
+
+        struct ListNode* newNode = (struct ListNode*)malloc(sizeof(struct ListNode));
+
+        int carry = number / 10;
+        newNode->val = (number % 10);
+        newNode->next = NULL;
+
+        number = carry;
+
+        if (last != NULL) 
+        {
+            last->next = newNode;
+        } 
+        else 
+        {
+            result = newNode;
+        }
+
+        last = newNode;
     }
 
     return result;
