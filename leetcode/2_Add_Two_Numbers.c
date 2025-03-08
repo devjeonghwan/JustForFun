@@ -21,14 +21,14 @@ const uint64_t DIGITS[] = {
     100000000000000000,
 };
 
-struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
-    struct ListNode* result = NULL; 
-    struct ListNode* last = NULL;
+struct ListNode *addTwoNumbers(struct ListNode *l1, struct ListNode *l2)
+{
+    struct ListNode *result = NULL;
+    struct ListNode *last = NULL;
 
     uint64_t number1 = 0;
-    int digit1 = 0;
-
     uint64_t number2 = 0;
+    int digit1 = 0;
     int digit2 = 0;
 
     while (l1 != NULL || l2 != NULL)
@@ -61,21 +61,22 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
             }
 
             number1 = carried ? 1 : 0;
-            digit1 = 0;
-
             number2 = 0;
+            digit1 = 0;
             digit2 = 0;
 
             for (int i = 0; i < increaseDigit || sum; i++)
             {
-                struct ListNode* newNode = (struct ListNode*)malloc(sizeof(struct ListNode));
+                struct ListNode *newNode = (struct ListNode *)malloc(sizeof(struct ListNode));
 
                 newNode->val = (sum % 10);
                 newNode->next = NULL;
                 sum /= 10;
 
-                if (result == NULL) result = newNode;
-                if (last != NULL) last->next = newNode;
+                if (result == NULL)
+                    result = newNode;
+                if (last != NULL)
+                    last->next = newNode;
 
                 last = newNode;
             }
@@ -85,9 +86,10 @@ struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2) {
     return result;
 }
 
-struct ListNode* addTwoNumbersSimple(struct ListNode* l1, struct ListNode* l2) {
-    struct ListNode* result = NULL; 
-    struct ListNode* last = NULL;
+struct ListNode *addTwoNumbersSimple(struct ListNode *l1, struct ListNode *l2)
+{
+    struct ListNode *result = NULL;
+    struct ListNode *last = NULL;
     int number = 0;
 
     while (l1 != NULL || l2 != NULL || number)
@@ -104,7 +106,7 @@ struct ListNode* addTwoNumbersSimple(struct ListNode* l1, struct ListNode* l2) {
             l2 = l2->next;
         }
 
-        struct ListNode* newNode = (struct ListNode*)malloc(sizeof(struct ListNode));
+        struct ListNode *newNode = (struct ListNode *)malloc(sizeof(struct ListNode));
 
         int carry = number / 10;
         newNode->val = (number % 10);
@@ -112,11 +114,11 @@ struct ListNode* addTwoNumbersSimple(struct ListNode* l1, struct ListNode* l2) {
 
         number = carry;
 
-        if (last != NULL) 
+        if (last != NULL)
         {
             last->next = newNode;
-        } 
-        else 
+        }
+        else
         {
             result = newNode;
         }

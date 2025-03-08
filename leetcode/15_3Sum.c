@@ -1,19 +1,21 @@
 typedef struct
 {
-    int**   triplets;
-    int*    sizes;
-    int     size;
-    int     capacity;
+    int **triplets;
+    int *sizes;
+    int size;
+    int capacity;
 } TripletArrayList;
 
-inline void Swap(int* a, int* b) {
+inline void Swap(int *a, int *b)
+{
     int temp = *a;
     *a = *b;
     *b = temp;
 }
 
-void SortQuickly(int* array, int size) {
-    int* stack = (int*) malloc(sizeof(int) * size * 2);
+void SortQuickly(int *array, int size)
+{
+    int *stack = (int *)malloc(sizeof(int) * size * 2);
     int top = -1;
 
     int lowIndex = 0;
@@ -57,14 +59,16 @@ void SortQuickly(int* array, int size) {
     free(stack);
 }
 
-void InitializeTripletArrayList(TripletArrayList* tripletArrayList, int capacity) {
+void InitializeTripletArrayList(TripletArrayList *tripletArrayList, int capacity)
+{
     tripletArrayList->size = 0;
     tripletArrayList->capacity = capacity;
-    tripletArrayList->triplets = (int**)malloc(sizeof(int*) * capacity);
-    tripletArrayList->sizes = (int*)malloc(sizeof(int) * capacity);
+    tripletArrayList->triplets = (int **)malloc(sizeof(int *) * capacity);
+    tripletArrayList->sizes = (int *)malloc(sizeof(int) * capacity);
 }
 
-void DestroyTripletArrayList(TripletArrayList* tripletArrayList) {
+void DestroyTripletArrayList(TripletArrayList *tripletArrayList)
+{
     free(tripletArrayList->sizes);
     tripletArrayList->sizes = NULL;
 
@@ -78,19 +82,20 @@ void DestroyTripletArrayList(TripletArrayList* tripletArrayList) {
     tripletArrayList->triplets = NULL;
 }
 
-void AddTriplet(TripletArrayList* tripletArrayList, int triple1, int triple2, int triple3) {
+void AddTriplet(TripletArrayList *tripletArrayList, int triple1, int triple2, int triple3)
+{
     if (tripletArrayList->size == tripletArrayList->capacity)
     {
         tripletArrayList->capacity *= 2;
 
-        int** newTriplets = (int**)realloc(tripletArrayList->triplets, sizeof(int*) * tripletArrayList->capacity);
-        int* newSizes = (int*)realloc(tripletArrayList->sizes, sizeof(int) * tripletArrayList->capacity);
+        int **newTriplets = (int **)realloc(tripletArrayList->triplets, sizeof(int *) * tripletArrayList->capacity);
+        int *newSizes = (int *)realloc(tripletArrayList->sizes, sizeof(int) * tripletArrayList->capacity);
 
         tripletArrayList->triplets = newTriplets;
         tripletArrayList->sizes = newSizes;
     }
 
-    int* tripleCopy = (int*)malloc(sizeof(int) * 3);
+    int *tripleCopy = (int *)malloc(sizeof(int) * 3);
 
     tripleCopy[0] = triple1;
     tripleCopy[1] = triple2;
@@ -101,7 +106,8 @@ void AddTriplet(TripletArrayList* tripletArrayList, int triple1, int triple2, in
     tripletArrayList->size++;
 }
 
-int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes) {
+int **threeSum(int *nums, int numsSize, int *returnSize, int **returnColumnSizes)
+{
     SortQuickly(nums, numsSize);
 
     TripletArrayList tripletArrayList;
@@ -155,7 +161,6 @@ int** threeSum(int* nums, int numsSize, int* returnSize, int** returnColumnSizes
                     {
                         rightIndex--;
                     } while (leftIndex < rightIndex && nums[rightIndex] == nums[rightIndex + 1]);
-
                 }
             }
 

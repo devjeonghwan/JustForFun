@@ -1,5 +1,6 @@
-int lengthOfLongestSubstring(char* s) {
-    int lastIndexMap[128] = { 0 };
+int lengthOfLongestSubstring(char *s)
+{
+    int lastIndexMap[128] = {0};
     int index = 0;
     int anchor = 1;
     int maxLength = 0;
@@ -13,7 +14,8 @@ int lengthOfLongestSubstring(char* s) {
 
         int length = (index + 1) - anchor + 1;
 
-        if (maxLength < length) maxLength = length;
+        if (maxLength < length)
+            maxLength = length;
 
         lastIndexMap[s[index]] = index + 1;
         index++;

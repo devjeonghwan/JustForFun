@@ -1,8 +1,11 @@
-double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Size) {
+double findMedianSortedArrays(int *nums1, int nums1Size, int *nums2, int nums2Size)
+{
     int totalSize = nums1Size + nums2Size;
     int medianIndex = totalSize / 2;
+
     int index1 = 0;
     int index2 = 0;
+
     double last1 = 0;
     double last2 = 0;
 
